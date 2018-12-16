@@ -147,20 +147,20 @@ nmap ,N :set number norelativenumber<CR>
 nmap ,m :VimuxInterruptRunner<CR>:VimuxRunCommand("clear && make")<CR>
 nmap ,l :VimuxRunCommand("zathura main.pdf &>/dev/null &")<CR>
 nmap ,x :VimuxInterruptRunner<CR>:VimuxRunCommand("quit")<CR>
-"nmap ,b :VimuxInterruptRunner<CR>:VimuxRunCommand("clear && bash " . bufname("%"))<CR>
 nmap ,v :VimuxInterruptRunner<CR>:VimuxRunLastCommand<CR>
-
-nmap ,r :VimuxRunCommand("clear && cargo run")<CR>
-nmap ,R :VimuxRunCommand("clear && cargo clean")<CR>
 "}}}
 
 " Filetype {{{
 
 " Python
-autocmd Filetype python nmap ,m :VimuxRunCommand("clear && python3 " . bufname("%"))<CR>
+autocmd Filetype python nmap ,m :VimuxInterruptRunner<CR>:VimuxRunCommand("clear && python3 " . bufname("%"))<CR>
 
 " Bash
-autocmd Filetype sh nmap ,m :VimuxRunCommand("clear && bash " . bufname("%"))<CR>
+autocmd Filetype sh nmap ,m :VimuxInterruptRunner<CR>:VimuxRunCommand("clear && bash " . bufname("%"))<CR>
+
+" Rust
+let g:ycm_rust_src_path = '/usr/src/rustc-1.30.0/src'
+autocmd Filetype rust nmap ,m :VimuxInterruptRunner<CR>:VimuxRunCommand("clear && cargo run")<CR>
 
 " LaTeX
 set grepprg=grep\ -nH\ $*
@@ -171,9 +171,4 @@ autocmd Filetype tex let g:VimuxRunnerType='window'
 autocmd Filetype tex setlocal foldmarker=%{{{,%}}}
 autocmd Filetype tex setlocal spell spelllang=en_gb
 autocmd Filetype tex syntax spell toplevel
-
-" Rust
-"autocmd Filetype rust let g:VimuxRunnerType='window'
-let g:ycm_rust_src_path = '/usr/src/rustc-1.30.0/src'
-autocmd Filetype rust nmap ,m :VimuxRunCommand("clear && cargo run")<CR>
 "}}}
