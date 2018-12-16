@@ -114,7 +114,7 @@ let g:NERDTreeMinimalUI = 1
 
 " Visual and Interactive {{{
 colorscheme zenburn
-set number
+set number relativenumber
 set mouse=a
 set showmatch
 set virtualedit=block
