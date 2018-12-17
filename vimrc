@@ -110,6 +110,7 @@ let g:VimuxHeight = "34"
 
 "{{{ File Managing
 let g:NERDTreeMinimalUI = 1
+set hidden
 "}}}
 
 " Visual and Interactive {{{
@@ -128,6 +129,7 @@ endif
 let g:airline_theme='minimalist'
 let g:airline_symbols.linenr='L'
 let g:airline_symbols.maxlinenr=' C'
+let g:airline_symbols.readonly='-w'
 let g:airline_section_y=''
 "}}}
 
@@ -161,6 +163,10 @@ autocmd Filetype sh nmap ,m :VimuxInterruptRunner<CR>:VimuxRunCommand("clear && 
 " Rust
 let g:ycm_rust_src_path = '/usr/src/rustc-1.30.0/src'
 autocmd Filetype rust nmap ,m :VimuxInterruptRunner<CR>:VimuxRunCommand("clear && cargo run")<CR>
+
+" Java
+autocmd Filetype java setlocal foldmethod=syntax
+autocmd Filetype java setlocal nofoldenable
 
 " LaTeX
 set grepprg=grep\ -nH\ $*
